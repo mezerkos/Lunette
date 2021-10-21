@@ -1,21 +1,17 @@
---- === Lunette ===
----
---- Zero-config Spectacle Keybindings for Hammerspoon
---- Download: [https://github.com/scottwhudson/Lunette/blob/master/Spoons/Lunette.spoon.zip](https://github.com/scottwhudson/Lunette/blob/master/Spoons/Lunette.spoon.zip)
 local obj = {}
 obj.__index = obj
 
---- Metadata
+-- Metadata
 obj.name = "Lunette"
-obj.version = "0.3.1"
+obj.version = "0.4"
 obj.author = "Scott Hudson <scott.w.hudson@gmail.com>"
 obj.license = "MIT"
 obj.homepage = "https://github.com/scottwhudson/Lunette"
 
---- disable animation
+-- disable animation
 hs.window.animationDuration = 0
 
---- Internal function used to find our location, so we know where to load files from
+-- Internal function used to find our location, so we know where to load files from
 local function script_path()
   local str = debug.getinfo(2, "S").source:sub(2)
   return str:match("(.*/)")
@@ -27,34 +23,34 @@ obj.history = dofile(obj.spoonPath.."/history.lua"):init()
 
 obj.DefaultMapping = {
   leftHalf = {
-    {{"cmd", "alt"}, "left"},
+    {{"cmd", "ctrl"}, "h"},
   },
   rightHalf = {
-    {{"cmd", "alt"}, "right"},
+    {{"cmd", "ctrl"}, "l"},
   },
   topHalf = {
-    {{"cmd", "alt"}, "up"},
+    {{"cmd", "ctrl"}, "k"},
   },
   bottomHalf = {
-    {{"cmd", "alt"}, "down"},
+    {{"cmd", "ctrl"}, "j"},
   },
   topLeft = {
-    {{"ctrl", "cmd"}, "Left"},
+    {{"ctrl", "cmd"}, "y"},
   },
   topRight = {
-    {{"ctrl", "cmd"}, "Right"},
+    {{"ctrl", "cmd"}, "u"},
   },
   bottomLeft = {
-    {{"ctrl", "cmd", "shift"}, "Left"},
+    {{"ctrl", "cmd"}, "i"},
   },
   bottomRight = {
-    {{"ctrl", "cmd", "shift"}, "Right"},
+    {{"ctrl", "cmd"}, "o"},
   },
   fullScreen = {
-    {{"cmd", "alt"}, "F"},
+    {{"cmd", "ctrl"}, "F"},
   },
   center = {
-    {{"cmd", "alt"}, "C"},
+    {{"ctrl", "cmd"}, "C"},
   },
   nextThird = {
     {{"ctrl", "alt"}, "Right"},
@@ -121,8 +117,8 @@ function obj:exec(commandName)
     newFrame = self.Command[commandName](windowFrame, screenFrame)
     self.history:push(currentFrame, newFrame)
   end
-
-  window:setFrame(newFrame)
+  window:setFrameInScreenBounds(newFrame)
+--  window:setFrame(newFrame)
 end
 
 return obj

@@ -87,15 +87,19 @@ end
 --- * A screenFrame to be rendered
 obj.bottomHalf = function(windowFrame, screenFrame)
   local newFrame
-
+  hs.alert("Screen Frame" .. screenFrame.y .. " to " .. screenFrame.h)  
   if Validate:bottomHalf(windowFrame, screenFrame) then
     newFrame = Resize:bottomTwoThirds(windowFrame, screenFrame)
   elseif Validate:bottomTwoThirds(windowFrame, screenFrame) then
     newFrame = Resize:bottomThird(windowFrame, screenFrame)
+    hs.alert("BottomThird" ..windowFrame.y+windowFrame.h)    
   else
+    hs.alert("BottomHalf" ..windowFrame.y+windowFrame.h)      
     newFrame = Resize:bottomHalf(windowFrame, screenFrame)
   end
+--  hs.alert("New Frame" .. windowFrame.y .. " to " ..windowFrame.y+windowFrame.)h
 
+  hs.alert("Bottom" ..windowFrame.y+windowFrame.h)
   return newFrame
 end
 

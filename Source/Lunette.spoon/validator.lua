@@ -69,21 +69,21 @@ function obj:bottomHalf(window, screen)
   return window.x == screen.x and
          window.y == (screen.h // 2) + screen.y and
          window.w == screen.w and
-         window.h == screen.h // 2
+         math.abs(window.h - screen.h // 2) < 2
 end
 
 function obj:bottomThird(window, screen)
   return window.x == screen.x and
          window.y == (((screen.h // 3) * 2) + screen.y) and
          window.w == screen.w and
-         window.h == (screen.h // 3)
+         math.abs(window.h - (screen.h // 3)) < 2
 end
 
 function obj:bottomTwoThirds(window, screen)
   return window.x == screen.x and
          window.y == ((screen.h // 3) + screen.y) and
          window.w == screen.w and
-         window.h == ((screen.h // 3) * 2)
+         math.abs(window.h - ((screen.h // 3) * 2)) < 2
 end
 
 function obj:bottomLeftHalf(window, screen)
@@ -132,42 +132,42 @@ function obj:leftHalf(window, screen)
   return window.x == screen.x and
          window.y == screen.y and
          window.w == screen.w // 2 and
-         window.h == screen.h
+	 math.abs(window.h - screen.h) <= 2
 end
 
 function obj:leftThird(window, screen)
   return window.x == screen.x and
          window.y == screen.y and
          window.w == (screen.w // 3) and
-         window.h == screen.h
+	 math.abs(window.h - screen.h) <= 2	 
 end
 
 function obj:leftTwoThirds(window, screen)
   return window.x == screen.x and
          window.y == screen.y and
          window.w == ((screen.w // 3) * 2) and
-         window.h == screen.h
+	 math.abs(window.h - screen.h) <= 2	 
 end
 
 function obj:rightHalf(window, screen)
   return window.x == (screen.w // 2) + screen.x and
          window.y == screen.y and
          window.w == screen.w // 2 and
-         window.h == screen.h
+         math.abs(window.h - screen.h) <= 2
 end
 
 function obj:rightThird(window, screen)
   return window.x == ((screen.w // 3) * 2 + screen.x) and
          window.y == screen.y and
          window.w == (screen.w // 3) and
-         window.h == screen.h
+         math.abs(window.h - screen.h) <= 2
 end
 
 function obj:rightTwoThirds(window, screen)
   return window.x == ((screen.w // 3) + screen.x) and
          window.y == screen.y and
          window.w == ((screen.w // 3) * 2) and
-         window.h == screen.h
+         math.abs(window.h - screen.h) <= 2
 end
 
 function obj:centerHorizontalThird(window, screen)
@@ -181,7 +181,7 @@ function obj:centerVerticalThird(window, screen)
   return window.x == (screen.w // 3) and
          window.y == screen.y and
          window.w == (screen.w // 3) and
-         window.h == screen.h
+         math.abs(window.h - screen.h) <= 2
 end
 
 function obj:inScreenBounds(window, screen)

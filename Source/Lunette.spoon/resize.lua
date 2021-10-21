@@ -188,9 +188,10 @@ end
 
 function obj:bottomThird(window, screen)
   window.x = screen.x
-  window.y = ((screen.h // 3) * 2) + screen.y
+  window.y = ((screen.h // 3) * 2)
   window.w = screen.w
-  window.h = screen.h // 3
+  window.h = (screen.h // 3) * 1
+--  window.h = screen.h // 3 - screen.y
 
   return window
 end
